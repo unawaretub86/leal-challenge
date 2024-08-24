@@ -9,11 +9,6 @@ import (
 	"github.com/unawaretub86/leal-challenge/utils/response"
 )
 
-const (
-	suffixErr  = "Error"
-	suffixUser = "User"
-)
-
 func (r *LealRouter) CreateUser(c *gin.Context) {
 	req := dto.CreateUserReq{}
 
@@ -22,11 +17,7 @@ func (r *LealRouter) CreateUser(c *gin.Context) {
 		return
 	}
 
-	params, err := dto.NewUser(req)
-	if err != nil {
-		response.EndWithStatusError(c, http.StatusBadRequest, suffixUser, err)
-		return
-	}
+	params := dto.NewUser(req)
 
 	user, err := r.LealService.CreateUser(*params)
 	if err != nil {
