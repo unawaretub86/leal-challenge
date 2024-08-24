@@ -18,3 +18,11 @@ func NewLealService(repository ports.RepositoryPort) *LealService {
 func (s *LealService) CreateUser(user domain.User) (*domain.User, error) {
 	return s.repository.CreateUser(user)
 }
+
+func (s *LealService) CreateCommerce(commerce domain.Commerce) (*domain.Commerce, error) {
+	return s.repository.CreateCommerce(commerce)
+}
+
+func (s *LealService) CreateBranch(branch domain.Branch) (*domain.Branch, error) {
+	return s.repository.CreateBranch(branch)
+}

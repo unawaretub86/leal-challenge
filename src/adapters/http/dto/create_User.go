@@ -9,9 +9,9 @@ type CreateUserReq struct {
 	Email string `json:"email"`
 }
 
-func NewUser(userReq CreateUserReq) (*domain.User, error) {
+func NewUser(userReq CreateUserReq) *domain.User {
 	return &domain.User{
 		Name:  userReq.Name,
 		Email: userReq.Email,
-	}, nil
+	}
 }

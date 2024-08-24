@@ -6,4 +6,6 @@ import (
 
 type LealPort interface {
 	CreateUser(domain.User) (*domain.User, error)
+	CreateCommerce(domain.Commerce) (*domain.Commerce, error)
+	CreateBranch(domain.Branch) (*domain.Branch, error)
 }
