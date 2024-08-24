@@ -45,6 +45,7 @@ func ConnectDB(connectionString string) (Database, error) {
 		db: db,
 	}
 
+	//db.Migrator().DropTable(&domain.User{}, &domain.Commerce{}, &domain.Points{}, &domain.Cashback{}, &domain.Branch{}, &domain.Campaign{})
 	db.AutoMigrate(&domain.User{}, &domain.Commerce{}, &domain.Points{}, &domain.Cashback{}, &domain.Branch{}, &domain.Campaign{})
 
 	return service, nil

@@ -31,4 +31,5 @@ func (r *LealRouter) SetRoutes(g *gin.Engine) {
 	commerceGroup := lealGroup.Group("/commerce")
 	commerceGroup.POST("", r.CreateCommerce)
 	commerceGroup.POST("/branch", r.CreateBranch)
+	commerceGroup.POST("/campaign", r.CreateCampaign)
 }

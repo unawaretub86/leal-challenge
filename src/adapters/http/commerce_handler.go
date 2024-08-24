@@ -46,3 +46,26 @@ func (r *LealRouter) CreateBranch(c *gin.Context) {
 
 	response.EndWithStatus(c, http.StatusOK, branch)
 }
+
+func (r *LealRouter) CreateCampaign(c *gin.Context) {
+	req := dto.CreateCampaignDTO{}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixErr, err)
+		return
+	}
+
+	params, err := dto.NewCampaign(req)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
+		return
+	}
+
+	campaign, err := r.LealService.CreateCampaign(*params)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
+		return
+	}
+
+	response.EndWithStatus(c, http.StatusOK, campaign)
+}

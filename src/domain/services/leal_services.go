@@ -26,3 +26,7 @@ func (s *LealService) CreateCommerce(commerce domain.Commerce) (*domain.Commerce
 func (s *LealService) CreateBranch(branch domain.Branch) (*domain.Branch, error) {
 	return s.repository.CreateBranch(branch)
 }
+
+func (s *LealService) CreateCampaign(campaign domain.Campaign) (*domain.Campaign, error) {
+	return s.repository.CreateCampaign(campaign)
+}
