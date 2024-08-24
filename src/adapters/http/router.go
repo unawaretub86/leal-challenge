@@ -32,4 +32,6 @@ func (r *LealRouter) SetRoutes(g *gin.Engine) {
 	commerceGroup.POST("", r.CreateCommerce)
 	commerceGroup.POST("/branch", r.CreateBranch)
 	commerceGroup.POST("/campaign", r.CreateCampaign)
+	commerceGroup.GET("/campaign/:id", r.GetCommerceCampaigns)
+	commerceGroup.GET("/branch/campaign/:id", r.GetBranchCampaigns)
 }

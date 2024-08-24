@@ -44,7 +44,7 @@ func (r *LealRepository) CreateBranch(branch domain.Branch) (*domain.Branch, err
 }
 
 func (r *LealRepository) CreateCampaign(campaign domain.Campaign) (*domain.Campaign, error) {
-	forAll, branchCampaign, err := r.isActiveCampaign(campaign.BranchID)
+	forAll, branchCampaign, err := r.isActiveCampaign(*campaign.BranchID)
 	if err != nil {
 		return nil, err
 	}
@@ -60,7 +60,35 @@ func (r *LealRepository) CreateCampaign(campaign domain.Campaign) (*domain.Campa
 	return &campaign, nil
 }
 
-func (r *LealRepository) isActiveCampaign(branchID *uint) (bool, bool, error) {
+func (r *LealRepository) GetCommerceCampaigns(id uint64) (domain.Campaigns, error) {
+	var resultData domain.Campaigns
+
+	result := r.db.Model(resultData).
+		Where("commerce_id = ?", id).
+		Find(&resultData)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return resultData, nil
+}
+
+func (r *LealRepository) GetBranchCampaigns(id uint64) (domain.Campaigns, error) {
+	var resultData domain.Campaigns
+
+	result := r.db.Model(resultData).
+		Where("branch_id = ?", id).
+		Find(&resultData)
+
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return resultData, nil
+}
+
+func (r *LealRepository) isActiveCampaign(branchID uint64) (bool, bool, error) {
 	campaign := domain.Campaign{}
 
 	result := r.db.Model(campaign).

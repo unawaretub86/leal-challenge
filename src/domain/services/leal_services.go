@@ -30,3 +30,11 @@ func (s *LealService) CreateBranch(branch domain.Branch) (*domain.Branch, error)
 func (s *LealService) CreateCampaign(campaign domain.Campaign) (*domain.Campaign, error) {
 	return s.repository.CreateCampaign(campaign)
 }
+
+func (s *LealService) GetCommerceCampaigns(id uint64) (domain.Campaigns, error) {
+	return s.repository.GetCommerceCampaigns(id)
+}
+
+func (s *LealService) GetBranchCampaigns(id uint64) (domain.Campaigns, error) {
+	return s.repository.GetBranchCampaigns(id)
+}

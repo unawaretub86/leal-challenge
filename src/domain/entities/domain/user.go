@@ -3,7 +3,7 @@ package domain
 import "time"
 
 type User struct {
-	ID        uint       `gorm:"primaryKey;autoIncrement"`
+	ID        uint64     `gorm:"primaryKey;autoIncrement"`
 	Name      string     `json:"name" validate:"required"`
 	Email     string     `json:"email" validate:"required,email" gorm:"uniqueIndex"`
 	Points    []Points   `gorm:"foreignKey:UserID"`

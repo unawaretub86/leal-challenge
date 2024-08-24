@@ -2,6 +2,7 @@ package http
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -25,7 +26,7 @@ func (r *LealRouter) CreateCommerce(c *gin.Context) {
 		return
 	}
 
-	response.EndWithStatus(c, http.StatusOK, comerce)
+	response.EndWithStatus(c, http.StatusCreated, comerce)
 }
 
 func (r *LealRouter) CreateBranch(c *gin.Context) {
@@ -44,7 +45,7 @@ func (r *LealRouter) CreateBranch(c *gin.Context) {
 		return
 	}
 
-	response.EndWithStatus(c, http.StatusOK, branch)
+	response.EndWithStatus(c, http.StatusCreated, branch)
 }
 
 func (r *LealRouter) CreateCampaign(c *gin.Context) {
@@ -67,5 +68,39 @@ func (r *LealRouter) CreateCampaign(c *gin.Context) {
 		return
 	}
 
-	response.EndWithStatus(c, http.StatusOK, campaign)
+	response.EndWithStatus(c, http.StatusCreated, campaign)
+}
+
+func (r *LealRouter) GetCommerceCampaigns(c *gin.Context) {
+	id := c.Param("id")
+	commerceID, err := strconv.ParseUint(id, 10, 0)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
+		return
+	}
+
+	campaigns, err := r.LealService.GetCommerceCampaigns(commerceID)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
+		return
+	}
+
+	response.EndWithStatus(c, http.StatusOK, campaigns)
+}
+
+func (r *LealRouter) GetBranchCampaigns(c *gin.Context) {
+	id := c.Param("id")
+	branchID, err := strconv.ParseUint(id, 10, 0)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
+		return
+	}
+
+	campaigns, err := r.LealService.GetBranchCampaigns(branchID)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
+		return
+	}
+
+	response.EndWithStatus(c, http.StatusOK, campaigns)
 }

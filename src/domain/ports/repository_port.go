@@ -7,4 +7,7 @@ type RepositoryPort interface {
 	CreateCommerce(domain.Commerce) (*domain.Commerce, error)
 	CreateBranch(domain.Branch) (*domain.Branch, error)
 	CreateCampaign(domain.Campaign) (*domain.Campaign, error)
+
+	GetCommerceCampaigns(id uint64) (domain.Campaigns, error)
+	GetBranchCampaigns(id uint64) (domain.Campaigns, error)
 }

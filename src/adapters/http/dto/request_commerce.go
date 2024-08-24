@@ -14,15 +14,15 @@ type (
 
 	CreateBranchDTO struct {
 		Name       string    `json:"name" validate:"required"`
-		CommerceID uint      `json:"commerce_id" validate:"required"`
+		CommerceID uint64    `json:"commerce_id" validate:"required"`
 		Address    string    `json:"address" validate:"required"`
 		ActiveDate time.Time `json:"active_date" validate:"required"`
 	}
 
 	CreateCampaignDTO struct {
 		Name        string    `json:"name" validate:"required"`
-		CommerceID  uint      `json:"commerce_id" validate:"required"`
-		BranchID    *uint     `json:"branch_id"`
+		CommerceID  uint64    `json:"commerce_id" validate:"required"`
+		BranchID    uint64    `json:"branch_id"`
 		StartDate   time.Time `json:"start_date" validate:"required"`
 		EndDate     time.Time `json:"end_date" validate:"required"`
 		IsForAll    bool      `json:"is_for_all"`
@@ -55,7 +55,7 @@ func NewCampaign(campaign CreateCampaignDTO) (*domain.Campaign, error) {
 	return &domain.Campaign{
 		Name:        campaign.Name,
 		CommerceID:  campaign.CommerceID,
-		BranchID:    campaign.BranchID,
+		BranchID:    &campaign.BranchID,
 		BonusFactor: campaign.BonusFactor,
 		BonusType:   campaign.BonusType,
 		MinPurchase: &campaign.MinPurchase,
