@@ -7,8 +7,8 @@ type Points struct {
 	Points           int        `json:"points" validate:"required"`
 	CommerceID       uint       `json:"commerce_id" validate:"required"`
 	ConversionFactor float64    `json:"conversion_factor" validate:"required"`
-	RedeemableItems  string     `json:"redeemable_items" validate:"required"` // Serializado como JSON string
-	UserID           uint       `json:"user_id" validate:"required"`
+	RedeemableItems  string     `json:"redeemable_items" validate:"required"`
+	UserID           uint       `json:"user_id" validate:"required" gorm:"index"`
 	EarnedDate       time.Time  `json:"earned_date" validate:"required"`
 	ExpiryDate       *time.Time `json:"expiry_date,omitempty"`
 	CanBeRedeemed    bool       `json:"can_be_redeemed" validate:"required"`

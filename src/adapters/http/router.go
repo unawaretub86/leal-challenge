@@ -2,20 +2,23 @@ package http
 
 import (
 	"github.com/gin-gonic/gin"
-	
+
 	"github.com/unawaretub86/leal-challenge/src/domain/ports"
 )
 
 type LealRouter struct {
-	LeaService ports.LealPort
+	LealService ports.LealPort
 }
 
-func NewRouter(LeaServicePorts ports.LealPort) *LealRouter {
+func NewRouter(LealServicePorts ports.LealPort) *LealRouter {
 	return &LealRouter{
-		LeaService: LeaServicePorts,
+		LealService: LealServicePorts,
 	}
 }
 
 func (r *LealRouter) SetRoutes(g *gin.Engine) {
-	_ = g.Group("/")
+	lealGroup := g.Group("/leal")
+
+	userGroup := lealGroup.Group("/user")
+	userGroup.POST("", r.CreateUser)
 }

@@ -30,7 +30,6 @@ func NewInitiator() *Initiator {
 	}
 }
 
-
 func (i *Initiator) initService() {
 	lealRepo := repository.NewLealRepository(i.initDB())
 	lealService := services.NewLealService(lealRepo)
@@ -64,8 +63,8 @@ func (i *Initiator) initDB() *gorm.DB {
 
 func (i *Initiator) InitAll() {
 	i.initDB()
-	i.initRouter()
 	i.initService()
+	i.initRouter()
 
 	err := i.GetRouter().Run(":" + "8080")
 	if err != nil {
