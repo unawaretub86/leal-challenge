@@ -20,13 +20,13 @@ func (r *LealRouter) CreateCommerce(c *gin.Context) {
 
 	params := dto.NewCommerce(req)
 
-	comerce, err := r.LealService.CreateCommerce(*params)
+	commerce, err := r.LealService.CreateCommerce(*params)
 	if err != nil {
 		response.EndWithStatusError(c, http.StatusBadRequest, suffixCommerce, err)
 		return
 	}
 
-	response.EndWithStatus(c, http.StatusCreated, comerce)
+	response.EndWithStatus(c, http.StatusCreated, commerce)
 }
 
 func (r *LealRouter) CreateBranch(c *gin.Context) {
