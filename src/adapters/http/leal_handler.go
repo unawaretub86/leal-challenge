@@ -28,7 +28,7 @@ func (r *LealRouter) CreateUser(c *gin.Context) {
 		return
 	}
 
-	user, err := r.LealService.CreateUser(params)
+	user, err := r.LealService.CreateUser(*params)
 	if err != nil {
 		response.EndWithStatusError(c, http.StatusBadRequest, suffixUser, err)
 		return
