@@ -80,6 +80,25 @@ func (r *LealRepository) GetBranchCampaigns(id uint64) (domain.Campaigns, error)
 	return resultData, nil
 }
 
+func (r *LealRepository) GetCampaign(id uint64) (*domain.Campaign, error) {
+	resultData, err := r.getCampaign(id)
+	if err.Error != nil {
+		return nil, err.Error
+	}
+
+	return resultData, nil
+}
+
+func (r *LealRepository) getCampaign(id uint64) (*domain.Campaign, *gorm.DB) {
+	campaign := &domain.Campaign{}
+
+	result := r.db.
+		Where("id = ?", id).
+		Take(&campaign)
+
+	return campaign, result
+}
+
 func (r *LealRepository) isActiveCampaign(branchID uint64) (bool, bool, error) {
 	campaign := domain.Campaign{}
 

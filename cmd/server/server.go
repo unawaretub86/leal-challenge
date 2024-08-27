@@ -12,10 +12,12 @@ import (
 	"github.com/unawaretub86/leal-challenge/src/adapters/repository"
 	"github.com/unawaretub86/leal-challenge/src/domain/ports"
 	"github.com/unawaretub86/leal-challenge/src/domain/services"
+	"github.com/unawaretub86/leal-challenge/src/domain/usecases"
 )
 
 type Service struct {
-	leal ports.LealPort
+	leal     ports.LealPort
+	usecases ports.UseCasePort
 }
 
 type Initiator struct {
@@ -32,10 +34,12 @@ func NewInitiator() *Initiator {
 
 func (i *Initiator) initService() {
 	lealRepo := repository.NewLealRepository(i.initDB())
-	lealService := services.NewLealService(lealRepo)
+	lealUseCase := usecases.NewLealUseCase(lealRepo)
+	lealService := services.NewLealService(lealRepo, lealUseCase)
 
 	i.service = Service{
 		lealService,
+		lealUseCase,
 	}
 }
 
