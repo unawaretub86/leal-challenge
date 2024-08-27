@@ -19,14 +19,6 @@ func NewLealRepository(db *gorm.DB) *LealRepository {
 	}
 }
 
-func (r *LealRepository) CreateUser(user domain.User) (*domain.User, error) {
-	if err := r.db.Create(&user).Error; err != nil {
-		return nil, err
-	}
-
-	return &user, nil
-}
-
 func (r *LealRepository) CreateCommerce(commerce domain.Commerce) (*domain.Commerce, error) {
 	if err := r.db.Create(&commerce).Error; err != nil {
 		return nil, err

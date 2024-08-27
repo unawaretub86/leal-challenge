@@ -27,6 +27,7 @@ func (r *LealRouter) SetRoutes(g *gin.Engine) {
 
 	userGroup := lealGroup.Group("/user")
 	userGroup.POST("", r.CreateUser)
+	userGroup.POST("/register-purchase", r.RegisterPurchase)
 
 	commerceGroup := lealGroup.Group("/commerce")
 	commerceGroup.POST("", r.CreateCommerce)

@@ -38,3 +38,7 @@ func (s *LealService) GetCommerceCampaigns(id uint64) (domain.Campaigns, error) 
 func (s *LealService) GetBranchCampaigns(id uint64) (domain.Campaigns, error) {
 	return s.repository.GetBranchCampaigns(id)
 }
+
+func (s *LealService) RegisterPurchase(purchase domain.Purchase) (*domain.Purchase, error) {
+	return s.repository.RegisterPurchase(purchase)
+}
