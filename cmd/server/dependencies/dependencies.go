@@ -64,7 +64,7 @@ func ConnectDB(connectionString string) (Database, error) {
 		&domain.Purchase{},
 		&domain.Award{},
 	)
-
+  
 	return service, nil
 }
 
