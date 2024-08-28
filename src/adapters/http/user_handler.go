@@ -27,3 +27,22 @@ func (r *LealRouter) CreateUser(c *gin.Context) {
 
 	response.EndWithStatus(c, http.StatusOK, user)
 }
+
+func (r *LealRouter) RegisterPurchase(c *gin.Context) {
+	req := dto.RegisterPurchaseReq{}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixErr, err)
+		return
+	}
+
+	params := dto.NewPurchase(req)
+
+	purchase, err := r.LealService.RegisterPurchase(*params)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixUser, err)
+		return
+	}
+
+	response.EndWithStatus(c, http.StatusCreated, purchase)
+}

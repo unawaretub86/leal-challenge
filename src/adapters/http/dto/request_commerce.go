@@ -20,15 +20,25 @@ type (
 	}
 
 	CreateCampaignDTO struct {
-		Name        string    `json:"name" validate:"required"`
-		CommerceID  uint64    `json:"commerce_id" validate:"required"`
-		BranchID    uint64    `json:"branch_id"`
-		StartDate   time.Time `json:"start_date" validate:"required"`
-		EndDate     time.Time `json:"end_date" validate:"required"`
-		IsForAll    bool      `json:"is_for_all"`
-		BonusFactor float64   `json:"bonus_factor" validate:"required"`
-		BonusType   string    `json:"bonus_type" validate:"required"`
-		MinPurchase float64   `json:"min_purchase" validate:"required"`
+		Name        string                 `json:"name" validate:"required"`
+		CommerceID  uint64                 `json:"commerce_id" validate:"required"`
+		BranchID    uint64                 `json:"branch_id"`
+		StartDate   time.Time              `json:"start_date" validate:"required"`
+		EndDate     time.Time              `json:"end_date" validate:"required"`
+		IsForAll    bool                   `json:"is_for_all"`
+		Awards      []CreateAwardsCampaign `json:"awards,omitempty"`
+		BonusFactor float64                `json:"bonus_factor" validate:"required"`
+		BonusType   string                 `json:"bonus_type" validate:"required"`
+		MinPurchase float64                `json:"min_purchase" validate:"required"`
+	}
+
+	CreateAwardsCampaign struct {
+		ID          uint64  `json:"id"`
+		CommerceID  uint64  `json:"commerce_id"`
+		Description string  `json:"description"`
+		PointsCost  uint64  `json:"points_cost"`
+		Value       float64 `json:"value"`
+		CampaignID  uint64
 	}
 )
 
@@ -62,5 +72,22 @@ func NewCampaign(campaign CreateCampaignDTO) (*domain.Campaign, error) {
 		StartDate:   campaign.StartDate,
 		EndDate:     campaign.EndDate,
 		IsForAll:    campaign.IsForAll,
+		Award:       getAwards(campaign.Awards),
 	}, nil
+}
+
+func getAwards(awardsDTO []CreateAwardsCampaign) []domain.Award {
+	var awards []domain.Award
+
+	for _, awardDTO := range awardsDTO {
+		award := domain.Award{
+			CommerceID:  awardDTO.CommerceID,
+			Description: awardDTO.Description,
+			PointsCost:  awardDTO.PointsCost,
+			Value:       awardDTO.Value,
+		}
+		awards = append(awards, award)
+	}
+
+	return awards
 }
