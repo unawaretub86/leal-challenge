@@ -4,10 +4,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/unawaretub86/leal-challenge/src/domain/entities/domain"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/plugin/dbresolver"
+
+	"github.com/unawaretub86/leal-challenge/src/domain/entities/domain"
 )
 
 const (
@@ -64,7 +65,7 @@ func ConnectDB(connectionString string) (Database, error) {
 		&domain.Purchase{},
 		&domain.Award{},
 	)
-  
+
 	return service, nil
 }
 
