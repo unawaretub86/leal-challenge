@@ -53,7 +53,9 @@ func ConnectDB(connectionString string) (Database, error) {
 		&domain.Branch{},
 		&domain.Campaign{},
 		&domain.Purchase{},
-		&domain.Award{})
+		&domain.Award{},
+		&domain.Redeem{},
+	)
 
 	db.AutoMigrate(
 		&domain.User{},
@@ -64,6 +66,7 @@ func ConnectDB(connectionString string) (Database, error) {
 		&domain.Campaign{},
 		&domain.Purchase{},
 		&domain.Award{},
+		&domain.Redeem{},
 	)
 
 	db.AutoMigrate(
@@ -76,7 +79,7 @@ func ConnectDB(connectionString string) (Database, error) {
 		&domain.Purchase{},
 		&domain.Award{},
 	)
-  
+
 	return service, nil
 }
 

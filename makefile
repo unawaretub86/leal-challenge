@@ -1,5 +1,3 @@
-DB_URL=postgresql://root:qwerty@localhost:5432/club_hub?sslmode=disable
-
 # run test coverage
 test:
 	go test -v -cover ./...

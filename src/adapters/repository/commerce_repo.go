@@ -93,6 +93,7 @@ func (r *LealRepository) getCampaign(id uint64) (*domain.Campaign, *gorm.DB) {
 	campaign := &domain.Campaign{}
 
 	result := r.db.
+		Preload("Award").
 		Where("id = ?", id).
 		Take(&campaign)
 

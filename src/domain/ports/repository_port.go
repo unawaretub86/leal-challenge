@@ -14,11 +14,13 @@ type RepositoryPort interface {
 	GetCommerceCampaigns(uint64) (domain.Campaigns, error)
 	GetBranchCampaigns(uint64) (domain.Campaigns, error)
 	GetCampaign(uint64) (*domain.Campaign, error)
+	GetPurchase(uint64) (*domain.Purchase, error)
 
 	// User methods
 	//  Post
 	RegisterPurchase(domain.Purchase) (*domain.Purchase, error)
 	UpdateUser(uint64, domain.User) (*domain.User, error)
+	Redeem(domain.Redeem) (*domain.Redeem, error)
 
 	// Get
 	GetUser(uint64) (*domain.User, error)

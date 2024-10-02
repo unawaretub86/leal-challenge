@@ -3,6 +3,7 @@ package domain
 import "time"
 
 type Purchase struct {
+	ID             uint64    `gorm:"primaryKey;autoIncrement"`
 	Amount         float64   `json:"amount" validate:"required"`
 	UserID         uint64    `json:"user_id" validate:"required"`
 	CommerceID     uint64    `json:"commerce_id" validate:"required"`
@@ -11,4 +12,5 @@ type Purchase struct {
 	EarnedPoints   int       `json:"earned_points"`
 	EarnedCashBack int       `json:"earned_cashBack"`
 	CreatedAt      time.Time `json:"created_at"`
+	RedeemPoints   bool      `json:"redeem_points" validate:"required"`
 }
