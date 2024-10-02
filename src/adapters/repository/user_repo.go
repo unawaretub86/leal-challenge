@@ -26,7 +26,10 @@ func (r *LealRepository) RegisterPurchase(purchase domain.Purchase) (*domain.Pur
 	user.Cashback += purchase.EarnedCashBack
 	user.Points += purchase.EarnedPoints
 
-	r.UpdateUser(purchase.UserID, *user)
+	_, err = r.UpdateUser(purchase.UserID, *user)
+	if err != nil {
+		return nil, err
+	}
 
 	return &purchase, nil
 }
@@ -85,7 +88,10 @@ func (r *LealRepository) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
 	user.Cashback -= int(redeem.RedeemedCashBack)
 	user.Points -= int(redeem.RedeemedPoints)
 
-	r.UpdateUser(redeem.UserID, *user)
+	_, err = r.UpdateUser(redeem.UserID, *user)
+	if err != nil {
+		return nil, err
+	}
 
 	return &redeem, nil
 }
