@@ -25,6 +25,7 @@ type (
 		AwardID        uint64 `json:"award_id"`
 		CashBack       uint64 `json:"cash_back"`
 		IsPointsRedeem bool   `json:"is_points_redeem"`
+		PurchaseID     uint64 `json:"purchase_id" validate:"required"`
 	}
 )
 
@@ -55,5 +56,6 @@ func NewRedeem(redeemReq RedeemReq) *domain.Redeem {
 		AwardID:        redeemReq.AwardID,
 		CashBack:       redeemReq.CashBack,
 		IsPointsRedeem: redeemReq.IsPointsRedeem,
+		PurchaseID:     redeemReq.PurchaseID,
 	}
 }

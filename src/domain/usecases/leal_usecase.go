@@ -2,6 +2,7 @@ package usecases
 
 import (
 	"errors"
+	"time"
 
 	"github.com/unawaretub86/leal-challenge/src/domain/entities/domain"
 	"github.com/unawaretub86/leal-challenge/src/domain/ports"
@@ -77,8 +78,49 @@ func (useCase *LealUseCase) GetUser(id uint64) (*domain.User, error) {
 	return useCase.usecase.GetUser(id)
 }
 
-func (useCase *LealUseCase) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
-	return useCase.usecase.Redeem(redeem)
+func (useCase *LealUseCase) GetPurchase(id uint64) (*domain.Purchase, error) {
+	return useCase.usecase.GetPurchase(id)
+}
+
+func (useCase *LealUseCase) RedeemPoints(redeem domain.Redeem, purchase domain.Purchase, campaign domain.Campaign, user domain.User) error {
+	if campaign.EndDate.Before(time.Now()) {
+		return errors.New("campaña inactiva")
+	}
+
+	if purchase.CommerceID != campaign.CommerceID {
+		return errors.New("no puede redimir puntos en un comercio diferente al que los adquirió")
+	}
+
+	var award *domain.Award
+	for _, a := range campaign.Award {
+		if a.ID == redeem.AwardID {
+			award = &a
+			break
+		}
+	}
+
+	if user.Points >= int(award.PointsCost) {
+		redeem.RedeemedAwardID = award.ID
+		redeem.RedeemedPoints = award.PointsCost
+
+		return nil
+	}
+
+	return errors.New("puntos insuficientes")
+}
+
+func (useCase *LealUseCase) RedeemCashBack(redeem domain.Redeem, campaign domain.Campaign, user domain.User) error {
+	if campaign.EndDate.Before(time.Now()) {
+		return errors.New("campaña inactiva")
+	}
+
+	if user.Cashback >= int(redeem.CashBack) {
+		redeem.RedeemedCashBack = float64(redeem.CashBack)
+
+		return nil
+	}
+
+	return errors.New("no hay cashback")
 }
 
 func validateBonusFactor(bonusFactor float64) error {

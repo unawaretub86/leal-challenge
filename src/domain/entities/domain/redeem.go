@@ -8,6 +8,8 @@ type Redeem struct {
 	AwardID          uint64
 	CashBack         uint64
 	RedeemedAwardID  uint64
+	RedeemedPoints   uint64
 	RedeemedCashBack float64
 	IsPointsRedeem   bool
+	PurchaseID       uint64
 }

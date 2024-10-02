@@ -50,6 +50,10 @@ func (s *LealService) GetUser(id uint64) (*domain.User, error) {
 	return s.repository.GetUser(id)
 }
 
+func (s *LealService) GetPurchase(id uint64) (*domain.Purchase, error) {
+	return s.repository.GetPurchase(id)
+}
+
 func (s *LealService) RegisterPurchase(purchase domain.Purchase) (*domain.Purchase, error) {
 	campaign, err := s.usecases.GetCampaign(purchase.CampaignID)
 	if err != nil {
@@ -79,13 +83,28 @@ func (s *LealService) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
 		return nil, err
 	}
 
+	purchase, err := s.usecases.GetPurchase(redeem.PurchaseID)
+	if err != nil {
+		return nil, err
+	}
+
+	user, err := s.GetUser(redeem.UserID)
+	if err != nil {
+		return nil, err
+	}
+
 	if redeem.IsPointsRedeem {
-		err = s.usecases.CalculatePoints(&purchase, *campaign)
+		err = s.usecases.RedeemPoints(redeem, *purchase, *campaign, *user)
 		if err != nil {
 			return nil, err
 		}
 
-		return s.repository.RegisterPurchase(purchase)
+		return s.repository.Redeem(redeem)
+	}
+
+	err = s.usecases.RedeemCashBack(redeem, *campaign, *user)
+	if err != nil {
+		return nil, err
 	}
 
 	return s.repository.Redeem(redeem)

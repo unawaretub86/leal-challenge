@@ -16,6 +16,7 @@ type LealPort interface {
 	GetCommerceCampaigns(id uint64) (domain.Campaigns, error)
 	GetBranchCampaigns(id uint64) (domain.Campaigns, error)
 	GetCampaign(id uint64) (*domain.Campaign, error)
+	GetPurchase(uint64) (*domain.Purchase, error)
 
 	// User methods
 	//  Post
