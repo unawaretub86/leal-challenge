@@ -28,7 +28,7 @@ type (
 		IsForAll    bool                   `json:"is_for_all"`
 		Awards      []CreateAwardsCampaign `json:"awards,omitempty"`
 		BonusFactor float64                `json:"bonus_factor" validate:"required"`
-		BonusType   string                 `json:"bonus_type" validate:"required"`
+		BonusType   string                 `json:"bonus_type" validate:"required,oneof=double percentage"`
 		MinPurchase float64                `json:"min_purchase" validate:"required"`
 	}
 

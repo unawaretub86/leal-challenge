@@ -66,3 +66,32 @@ func (r *LealRouter) RegisterPurchase(c *gin.Context) {
 
 	response.EndWithStatus(c, http.StatusCreated, purchase)
 }
+
+// Redeem points
+// @Summary Registrar una nueva compra
+// @Description Registra una nueva compra en el sistema utilizando la información proporcionada.
+// @Tags pruchase
+// @Accept  json
+// @Produce  json
+// @Param   user   body   dto.RegisterPurchaseReq   true   "Información de la compra a registrada"
+// @Success 200 {object} domain.Purchase "Compra registrada exitosamente"
+// @Failure 400 {object} map[string]interface{} "Bad Request"
+// @Router /register-purchase [post]
+func (r *LealRouter) Redeem(c *gin.Context) {
+	req := dto.RedeemReq{}
+
+	if err := c.ShouldBindJSON(&req); err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixErr, err)
+		return
+	}
+
+	params := dto.NewRedeem(req)
+
+	purchase, err := r.LealService.Redeem(*params)
+	if err != nil {
+		response.EndWithStatusError(c, http.StatusBadRequest, suffixUser, err)
+		return
+	}
+
+	response.EndWithStatus(c, http.StatusCreated, purchase)
+}

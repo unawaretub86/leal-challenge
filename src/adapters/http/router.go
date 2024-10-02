@@ -26,6 +26,15 @@ func NewRouter(LealServicePorts ports.LealPort) *LealRouter {
 	}
 }
 
+// @title Leal challenge
+// @version 1.0
+// @description Esta api es para poder solucionar el reto tecnico de leal
+// @termsOfService http://swagger.io/terms/
+
+// @contact.name Esteban Gomez
+// @contact.email unawaretub86@gmail.com
+
+// @host localhost:8080
 func (r *LealRouter) SetRoutes(g *gin.Engine) {
 	r.SetTestRoutes(g)
 
@@ -34,6 +43,7 @@ func (r *LealRouter) SetRoutes(g *gin.Engine) {
 	userGroup := lealGroup.Group("/user")
 	userGroup.POST("", r.CreateUser)
 	userGroup.POST("/register-purchase", r.RegisterPurchase)
+	userGroup.POST("/redeem", r.Redeem)
 
 	commerceGroup := lealGroup.Group("/commerce")
 	commerceGroup.POST("", r.CreateCommerce)
@@ -43,18 +53,6 @@ func (r *LealRouter) SetRoutes(g *gin.Engine) {
 	commerceGroup.GET("/branch/campaign/:id", r.GetBranchCampaigns)
 }
 
-// @title Leal challenge
-// @version 1.0
-// @description Esta api es para poder solucionar el reto tecnico de leal
-// @termsOfService http://swagger.io/terms/
-
-// @contact.name Esteban Gomez
-// @contact.email unawaretub86@gmail.com
-
-// @license.name MIT
-// @license.url https://opensource.org/licenses/MIT
-
-// @host localhost:8080
 func (r *LealRouter) SetTestRoutes(g *gin.Engine) {
 	docs.SwaggerInfo.BasePath = "/api/v1"
 
