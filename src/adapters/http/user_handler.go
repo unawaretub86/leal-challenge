@@ -9,6 +9,16 @@ import (
 	"github.com/unawaretub86/leal-challenge/utils/response"
 )
 
+// CreateUser
+// @Summary Crear un nuevo usuario
+// @Description Crea un usuario en el sistema utilizando la información proporcionada.
+// @Tags usuario
+// @Accept  json
+// @Produce  json
+// @Param   user   body   dto.CreateUserReq   true   "Información del usuario a crear"
+// @Success 200 {object} domain.User "Usuario creado exitosamente"
+// @Failure 400 {object} map[string]interface{} "Bad Request"
+// @Router / [post]
 func (r *LealRouter) CreateUser(c *gin.Context) {
 	req := dto.CreateUserReq{}
 
@@ -28,6 +38,16 @@ func (r *LealRouter) CreateUser(c *gin.Context) {
 	response.EndWithStatus(c, http.StatusOK, user)
 }
 
+// RegisterPurchase
+// @Summary Registrar una nueva compra
+// @Description Registra una nueva compra en el sistema utilizando la información proporcionada.
+// @Tags pruchase
+// @Accept  json
+// @Produce  json
+// @Param   user   body   dto.RegisterPurchaseReq   true   "Información de la compra a registrada"
+// @Success 200 {object} domain.Purchase "Compra registrada exitosamente"
+// @Failure 400 {object} map[string]interface{} "Bad Request"
+// @Router /register-purchase [post]
 func (r *LealRouter) RegisterPurchase(c *gin.Context) {
 	req := dto.RegisterPurchaseReq{}
 

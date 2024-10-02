@@ -1,0 +1,131 @@
+definitions:
+  domain.Purchase:
+    properties:
+      amount:
+        type: number
+      branch_id:
+        type: integer
+      campaign_id:
+        type: integer
+      commerce_id:
+        type: integer
+      created_at:
+        type: string
+      earned_cashBack:
+        type: integer
+      earned_points:
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - amount
+    - branch_id
+    - campaign_id
+    - commerce_id
+    - user_id
+    type: object
+  domain.User:
+    properties:
+      cashback:
+        type: integer
+      createdAt:
+        type: string
+      email:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      points:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  dto.CreateUserReq:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+    required:
+    - email
+    - name
+    type: object
+  dto.RegisterPurchaseReq:
+    properties:
+      amount:
+        type: number
+      branch_id:
+        type: integer
+      campaign_id:
+        type: integer
+      commerce_id:
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - amount
+    - branch_id
+    - campaign_id
+    - commerce_id
+    - user_id
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    post:
+      consumes:
+      - application/json
+      description: Crea un usuario en el sistema utilizando la información proporcionada.
+      parameters:
+      - description: Información del usuario a crear
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateUserReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Usuario creado exitosamente
+          schema:
+            $ref: '#/definitions/domain.User'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Crear un nuevo usuario
+      tags:
+      - usuario
+  /register-purchase:
+    post:
+      consumes:
+      - application/json
+      description: Registra una nueva compra en el sistema utilizando la información
+        proporcionada.
+      parameters:
+      - description: Información de la compra a registrada
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RegisterPurchaseReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Compra registrada exitosamente
+          schema:
+            $ref: '#/definitions/domain.Purchase'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Registrar una nueva compra
+      tags:
+      - pruchase
+swagger: "2.0"
