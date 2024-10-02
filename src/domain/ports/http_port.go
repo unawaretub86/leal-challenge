@@ -20,6 +20,7 @@ type LealPort interface {
 	// User methods
 	//  Post
 	RegisterPurchase(domain.Purchase) (*domain.Purchase, error)
+	Redeem(domain.Redeem) (*domain.Redeem, error)
 
 	// Get
 	GetUser(uint64) (*domain.User, error)

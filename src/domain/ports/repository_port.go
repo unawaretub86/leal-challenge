@@ -19,6 +19,7 @@ type RepositoryPort interface {
 	//  Post
 	RegisterPurchase(domain.Purchase) (*domain.Purchase, error)
 	UpdateUser(uint64, domain.User) (*domain.User, error)
+	Redeem(domain.Redeem) (*domain.Redeem, error)
 
 	// Get
 	GetUser(uint64) (*domain.User, error)

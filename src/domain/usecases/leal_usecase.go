@@ -32,9 +32,7 @@ func (useCase LealUseCase) CalculateCashback(purchase *domain.Purchase, campaign
 		return err
 	}
 
-	earnedCashBack := int(cashback)
-
-	purchase.EarnedCashBack = earnedCashBack
+	purchase.EarnedCashBack = int(cashback)
 
 	return nil
 }
@@ -49,9 +47,7 @@ func (useCase LealUseCase) CalculatePoints(purchase *domain.Purchase, campaign d
 		return err
 	}
 
-	earnedPoints := int(points)
-
-	purchase.EarnedPoints = earnedPoints
+	purchase.EarnedPoints = int(points)
 
 	return nil
 }
@@ -81,9 +77,14 @@ func (useCase *LealUseCase) GetUser(id uint64) (*domain.User, error) {
 	return useCase.usecase.GetUser(id)
 }
 
+func (useCase *LealUseCase) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
+	return useCase.usecase.Redeem(redeem)
+}
+
 func validateBonusFactor(bonusFactor float64) error {
 	if bonusFactor <= 0 {
 		return errors.New("bonus factor must be greater than 0")
 	}
+
 	return nil
 }

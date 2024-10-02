@@ -72,3 +72,21 @@ func (s *LealService) RegisterPurchase(purchase domain.Purchase) (*domain.Purcha
 
 	return s.repository.RegisterPurchase(purchase)
 }
+
+func (s *LealService) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
+	campaign, err := s.usecases.GetCampaign(redeem.CampaignID)
+	if err != nil {
+		return nil, err
+	}
+
+	if redeem.IsPointsRedeem {
+		err = s.usecases.CalculatePoints(&purchase, *campaign)
+		if err != nil {
+			return nil, err
+		}
+
+		return s.repository.RegisterPurchase(purchase)
+	}
+
+	return s.repository.Redeem(redeem)
+}
