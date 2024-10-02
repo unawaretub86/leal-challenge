@@ -11,4 +11,5 @@ type Purchase struct {
 	EarnedPoints   int       `json:"earned_points"`
 	EarnedCashBack int       `json:"earned_cashBack"`
 	CreatedAt      time.Time `json:"created_at"`
+	RedeemPoints   bool      `json:"redeem_points" validate:"required"`
 }

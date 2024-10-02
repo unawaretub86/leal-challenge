@@ -56,12 +56,16 @@ func (s *LealService) RegisterPurchase(purchase domain.Purchase) (*domain.Purcha
 		return nil, err
 	}
 
-	err = s.usecases.CalculateCashback(&purchase, *campaign)
-	if err != nil {
-		return nil, err
+	if purchase.RedeemPoints {
+		err = s.usecases.CalculatePoints(&purchase, *campaign)
+		if err != nil {
+			return nil, err
+		}
+
+		return s.repository.RegisterPurchase(purchase)
 	}
 
-	err = s.usecases.CalculatePoints(&purchase, *campaign)
+	err = s.usecases.CalculateCashback(&purchase, *campaign)
 	if err != nil {
 		return nil, err
 	}
