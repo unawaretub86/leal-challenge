@@ -82,7 +82,7 @@ func (useCase *LealUseCase) GetPurchase(id uint64) (*domain.Purchase, error) {
 	return useCase.usecase.GetPurchase(id)
 }
 
-func (useCase *LealUseCase) RedeemPoints(redeem domain.Redeem, purchase domain.Purchase, campaign domain.Campaign, user domain.User) error {
+func (useCase *LealUseCase) RedeemPoints(redeem *domain.Redeem, purchase domain.Purchase, campaign domain.Campaign, user domain.User) error {
 	if campaign.EndDate.Before(time.Now()) {
 		return errors.New("campaña inactiva")
 	}
@@ -109,7 +109,7 @@ func (useCase *LealUseCase) RedeemPoints(redeem domain.Redeem, purchase domain.P
 	return errors.New("puntos insuficientes")
 }
 
-func (useCase *LealUseCase) RedeemCashBack(redeem domain.Redeem, campaign domain.Campaign, user domain.User) error {
+func (useCase *LealUseCase) RedeemCashBack(redeem *domain.Redeem, campaign domain.Campaign, user domain.User) error {
 	if campaign.EndDate.Before(time.Now()) {
 		return errors.New("campaña inactiva")
 	}

@@ -10,6 +10,6 @@ type UseCasePort interface {
 	CalculateCashback(*domain.Purchase, domain.Campaign) error
 	CalculatePoints(*domain.Purchase, domain.Campaign) error
 
-	RedeemPoints(domain.Redeem, domain.Purchase, domain.Campaign, domain.User) error
-	RedeemCashBack(domain.Redeem, domain.Campaign, domain.User) error
+	RedeemPoints(*domain.Redeem, domain.Purchase, domain.Campaign, domain.User) error
+	RedeemCashBack(*domain.Redeem, domain.Campaign, domain.User) error
 }

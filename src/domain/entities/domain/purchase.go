@@ -3,6 +3,7 @@ package domain
 import "time"
 
 type Purchase struct {
+	ID             uint64    `gorm:"primaryKey;autoIncrement"`
 	Amount         float64   `json:"amount" validate:"required"`
 	UserID         uint64    `json:"user_id" validate:"required"`
 	CommerceID     uint64    `json:"commerce_id" validate:"required"`

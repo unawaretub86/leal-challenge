@@ -94,7 +94,7 @@ func (s *LealService) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
 	}
 
 	if redeem.IsPointsRedeem {
-		err = s.usecases.RedeemPoints(redeem, *purchase, *campaign, *user)
+		err = s.usecases.RedeemPoints(&redeem, *purchase, *campaign, *user)
 		if err != nil {
 			return nil, err
 		}
@@ -102,7 +102,7 @@ func (s *LealService) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
 		return s.repository.Redeem(redeem)
 	}
 
-	err = s.usecases.RedeemCashBack(redeem, *campaign, *user)
+	err = s.usecases.RedeemCashBack(&redeem, *campaign, *user)
 	if err != nil {
 		return nil, err
 	}
