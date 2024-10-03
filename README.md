@@ -44,9 +44,17 @@ En este servicio, se ha incorporado flujos de trabajo de GitHub Actions para ase
 
 Para correr este programa puedes hacerlo con el siguiente comando y tener abierto docker
 
-make start
+Agrega estas variables de entorno
+
+DB_USER=postgres
+DB_PASSWORD=admin
+DB_NAME=db-leal
+DB_HOST=localhost
+DB_PORT=5432
 
 make init_db
+
+make start
 
 Solo importa estas colecciones en postman y tendrás ejemplos para probar
 
