@@ -83,17 +83,17 @@ func (s *LealService) Redeem(redeem domain.Redeem) (*domain.Redeem, error) {
 		return nil, err
 	}
 
-	purchase, err := s.usecases.GetPurchase(redeem.PurchaseID)
-	if err != nil {
-		return nil, err
-	}
-
 	user, err := s.GetUser(redeem.UserID)
 	if err != nil {
 		return nil, err
 	}
 
 	if redeem.IsPointsRedeem {
+		purchase, err := s.usecases.GetPurchase(redeem.PurchaseID)
+		if err != nil {
+			return nil, err
+		}
+
 		err = s.usecases.RedeemPoints(&redeem, *purchase, *campaign, *user)
 		if err != nil {
 			return nil, err

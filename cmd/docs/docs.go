@@ -101,36 +101,35 @@ const docTemplate = `{
     "definitions": {
         "domain.Purchase": {
             "type": "object",
-            "required": [
-                "amount",
-                "branch_id",
-                "campaign_id",
-                "commerce_id",
-                "user_id"
-            ],
             "properties": {
                 "amount": {
                     "type": "number"
                 },
-                "branch_id": {
+                "branchID": {
                     "type": "integer"
                 },
-                "campaign_id": {
+                "campaignID": {
                     "type": "integer"
                 },
-                "commerce_id": {
+                "commerceID": {
                     "type": "integer"
                 },
-                "created_at": {
+                "createdAt": {
                     "type": "string"
                 },
-                "earned_cashBack": {
+                "earnedCashBack": {
                     "type": "integer"
                 },
-                "earned_points": {
+                "earnedPoints": {
                     "type": "integer"
                 },
-                "user_id": {
+                "id": {
+                    "type": "integer"
+                },
+                "redeemPoints": {
+                    "type": "boolean"
+                },
+                "userID": {
                     "type": "integer"
                 }
             }
@@ -183,6 +182,7 @@ const docTemplate = `{
                 "branch_id",
                 "campaign_id",
                 "commerce_id",
+                "redeem_points",
                 "user_id"
             ],
             "properties": {
@@ -197,6 +197,9 @@ const docTemplate = `{
                 },
                 "commerce_id": {
                     "type": "integer"
+                },
+                "redeem_points": {
+                    "type": "boolean"
                 },
                 "user_id": {
                     "type": "integer"
