@@ -12,7 +12,7 @@ import (
 // CreateUser
 // @Summary Crear un nuevo usuario
 // @Description Crea un usuario en el sistema utilizando la información proporcionada.
-// @Tags usuario
+// @Tags User
 // @Accept  json
 // @Produce  json
 // @Param   user   body   dto.CreateUserReq   true   "Información del usuario a crear"
@@ -41,7 +41,7 @@ func (r *LealRouter) CreateUser(c *gin.Context) {
 // RegisterPurchase
 // @Summary Registrar una nueva compra
 // @Description Registra una nueva compra en el sistema utilizando la información proporcionada.
-// @Tags pruchase
+// @Tags Purchase
 // @Accept  json
 // @Produce  json
 // @Param   purchase   body   dto.RegisterPurchaseReq   true   "Información de la compra a registrada"

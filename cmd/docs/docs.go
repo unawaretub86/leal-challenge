@@ -214,7 +214,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "usuario"
+                    "User"
                 ],
                 "summary": "Crear un nuevo usuario",
                 "parameters": [
@@ -296,7 +296,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "pruchase"
+                    "Purchase"
                 ],
                 "summary": "Registrar una nueva compra",
                 "parameters": [

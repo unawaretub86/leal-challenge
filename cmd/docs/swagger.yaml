@@ -425,7 +425,8 @@ paths:
             type: object
       summary: Crear un nuevo usuario
       tags:
-      - usuario
+
+      - User
   /user/redeem:
     post:
       consumes:
@@ -480,5 +481,5 @@ paths:
             type: object
       summary: Registrar una nueva compra
       tags:
-      - pruchase
+      - Purchase
 swagger: "2.0"
