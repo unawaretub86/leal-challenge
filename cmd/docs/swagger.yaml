@@ -425,6 +425,7 @@ paths:
             type: object
       summary: Crear un nuevo usuario
       tags:
+
       - User
   /user/redeem:
     post:
