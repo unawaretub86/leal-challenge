@@ -16,9 +16,9 @@ import (
 // @Accept  json
 // @Produce  json
 // @Param   user   body   dto.CreateUserReq   true   "Información del usuario a crear"
-// @Success 200 {object} domain.User "Usuario creado exitosamente"
+// @Success 201 {object} domain.User "Usuario creado exitosamente"
 // @Failure 400 {object} map[string]interface{} "Bad Request"
-// @Router / [post]
+// @Router /user/ [post]
 func (r *LealRouter) CreateUser(c *gin.Context) {
 	req := dto.CreateUserReq{}
 
@@ -44,10 +44,10 @@ func (r *LealRouter) CreateUser(c *gin.Context) {
 // @Tags pruchase
 // @Accept  json
 // @Produce  json
-// @Param   user   body   dto.RegisterPurchaseReq   true   "Información de la compra a registrada"
-// @Success 200 {object} domain.Purchase "Compra registrada exitosamente"
+// @Param   purchase   body   dto.RegisterPurchaseReq   true   "Información de la compra a registrada"
+// @Success 201 {object} domain.Purchase "Compra registrada exitosamente"
 // @Failure 400 {object} map[string]interface{} "Bad Request"
-// @Router /register-purchase [post]
+// @Router /user/register-purchase [post]
 func (r *LealRouter) RegisterPurchase(c *gin.Context) {
 	req := dto.RegisterPurchaseReq{}
 
@@ -68,15 +68,15 @@ func (r *LealRouter) RegisterPurchase(c *gin.Context) {
 }
 
 // Redeem points
-// @Summary Registrar una nueva compra
-// @Description Registra una nueva compra en el sistema utilizando la información proporcionada.
-// @Tags pruchase
+// @Summary Registrar una redencion de puntos o cashback
+// @Description Registrar una redencion de puntos o cashback.
+// @Tags Redeem
 // @Accept  json
 // @Produce  json
-// @Param   user   body   dto.RegisterPurchaseReq   true   "Información de la compra a registrada"
-// @Success 200 {object} domain.Purchase "Compra registrada exitosamente"
+// @Param   redeem   body   dto.RedeemReq   true   "Información para redimir"
+// @Success 201 {object} domain.Redeem "Compra registrada exitosamente"
 // @Failure 400 {object} map[string]interface{} "Bad Request"
-// @Router /register-purchase [post]
+// @Router /user/redeem [post]
 func (r *LealRouter) Redeem(c *gin.Context) {
 	req := dto.RedeemReq{}
 
