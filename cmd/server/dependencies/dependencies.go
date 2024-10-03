@@ -46,7 +46,7 @@ func ConnectDB(connectionString string) (Database, error) {
 		db: db,
 	}
 
-	db.AutoMigrate(
+	err = db.AutoMigrate(
 		&domain.User{},
 		&domain.Commerce{},
 		&domain.Branch{},
@@ -55,6 +55,9 @@ func ConnectDB(connectionString string) (Database, error) {
 		&domain.Award{},
 		&domain.Redeem{},
 	)
+	if err != nil {
+		return nil, err
+	}
 
 	return service, nil
 }

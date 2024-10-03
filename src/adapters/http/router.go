@@ -54,7 +54,7 @@ func (r *LealRouter) SetRoutes(g *gin.Engine) {
 }
 
 func (r *LealRouter) SetTestRoutes(g *gin.Engine) {
-	docs.SwaggerInfo.BasePath = "/api/v1"
+	docs.SwaggerInfo.BasePath = "/leal"
 
 	g.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
