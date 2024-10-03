@@ -10,6 +10,16 @@ import (
 	"github.com/unawaretub86/leal-challenge/utils/response"
 )
 
+// Create Commerce
+// @Summary Crear un nuevo comercio
+// @Description Crea un comercio en el sistema utilizando la información proporcionada.
+// @Tags Commerce
+// @Accept  json
+// @Produce  json
+// @Param   commerce   body   dto.CreateCommerceDTO   true   "Información del comercio a crear"
+// @Success 201 {object} domain.Commerce "comercio creado exitosamente"
+// @Failure 400 {object} map[string]interface{} "Bad Request"
+// @Router /commerce/ [post]
 func (r *LealRouter) CreateCommerce(c *gin.Context) {
 	req := dto.CreateCommerceDTO{}
 
@@ -29,6 +39,16 @@ func (r *LealRouter) CreateCommerce(c *gin.Context) {
 	response.EndWithStatus(c, http.StatusCreated, commerce)
 }
 
+// Create Commerce branch
+// @Summary Crear una nueva sucursal
+// @Description Crea una sucursal en el sistema utilizando la información proporcionada.
+// @Tags Branch
+// @Accept  json
+// @Produce  json
+// @Param   branch   body   dto.CreateBranchDTO   true   "Información de la sucursal a crear"
+// @Success 201 {object} domain.Branch "sucursal creada exitosamente"
+// @Failure 400 {object} map[string]interface{} "Bad Request"
+// @Router /commerce/branch [post]
 func (r *LealRouter) CreateBranch(c *gin.Context) {
 	req := dto.CreateBranchDTO{}
 
@@ -48,6 +68,16 @@ func (r *LealRouter) CreateBranch(c *gin.Context) {
 	response.EndWithStatus(c, http.StatusCreated, branch)
 }
 
+// Create Campaign
+// @Summary Crear una nueva campaña
+// @Description Crea una campaña en el sistema utilizando la información proporcionada.
+// @Tags Campaign
+// @Accept  json
+// @Produce  json
+// @Param   campaign   body   dto.CreateCampaignDTO   true   "Información de la campaña a crear"
+// @Success 201 {object} domain.Campaign "campaña creada exitosamente"
+// @Failure 400 {object} map[string]interface{} "Bad Request"
+// @Router /commerce/campaign [post]
 func (r *LealRouter) CreateCampaign(c *gin.Context) {
 	req := dto.CreateCampaignDTO{}
 
@@ -71,6 +101,15 @@ func (r *LealRouter) CreateCampaign(c *gin.Context) {
 	response.EndWithStatus(c, http.StatusCreated, campaign)
 }
 
+// Get Commerce Campaign
+// @Summary Obtener campañas de un comercio
+// @Description obtener campañas de un comercio en el sistema.
+// @Tags Campaign
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} domain.Campaigns
+// @Failure 404 {object} map[string]interface{} "Not Found"
+// @Router /commerce/campaign/:id [get]
 func (r *LealRouter) GetCommerceCampaigns(c *gin.Context) {
 	id := c.Param("id")
 	commerceID, err := strconv.ParseUint(id, 10, 0)
@@ -88,6 +127,15 @@ func (r *LealRouter) GetCommerceCampaigns(c *gin.Context) {
 	response.EndWithStatus(c, http.StatusOK, campaigns)
 }
 
+// Get Branch Campaign
+// @Summary Obtener campañas de una sucursal
+// @Description obtener campañas de una sucursal en el sistema.
+// @Tags Campaign
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} domain.Campaigns
+// @Failure 404 {object} map[string]interface{} "Not Found"
+// @Router /commerce/branch/campaign/:id [get]
 func (r *LealRouter) GetBranchCampaigns(c *gin.Context) {
 	id := c.Param("id")
 	branchID, err := strconv.ParseUint(id, 10, 0)
