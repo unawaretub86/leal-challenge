@@ -79,7 +79,7 @@ El usuario puede redimir sus puntos en el comercio donde los ganó o utilizar su
 
 Esteban Gomez - [LinkedIn](https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BSnAu1%2F2AQQiK8pzcnqrLUA%3D%3D) - goal.esteban10@gmail.com
 
-Project Link: [Github repo](https://github.com/unawaretub86/top-secret)
+Project Link: [Github repo](https://github.com/unawaretub86/leal-challenge)
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
